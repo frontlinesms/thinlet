@@ -1,0 +1,30 @@
+# Excluded files
+
+# The maven "target" directory - a temporary directory used in Maven builds
+target/
+
+# Eclipse files and directories
+bin/
+.classpath
+.project
+.settings/
+
+# FrontlineSMS resources bundle - this should be generated at build-time
+src/main/resources/resources.zip
+
+# Temporary working directory
+temp/
+test_temp/
+
+# Ignore log files in the root directory
+*.log
+
+# Ignore binary libraries placed in the home directory to allow for JNI access
+*.dll
+
+# Added on OSX Eclipse as entries above not effective
+/.settings
+/target
+/.classpath
+/.project
+/.classpath
