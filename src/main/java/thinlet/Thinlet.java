@@ -3588,6 +3588,11 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 			return true;
 		} else if (keycode == KeyEvent.VK_DELETE) {
 			invoke(component, null, ATTRIBUTE_DELETE);
+		} else if (keycode == KeyEvent.VK_ENTER) {
+			// This was added by FrontlineSMS to launch the "perform" action when pressing ENTER 
+			Object lead = get(component, ":lead");
+			Object row = getListItem(component, component, keycode, lead, recursive);
+			invoke(component, row, PERFORM);
 		} else if (controldown) {
 			if (((keycode == KeyEvent.VK_A) || (keycode == 0xBF)) && //KeyEvent.VK_SLASH
 					(getString(component, SELECTION, "single") != "single")) { // select all
