@@ -3,12 +3,12 @@
 	<groupId>net.frontlinesms.core</groupId>
 	<artifactId>thinlet</artifactId>
 	<name>Thinlet</name>
-	<version>1.0.2</version>
+	<version>1.0.3-SNAPSHOT</version>
 	<description>Thinlet lightweight Java UI framework</description>
 	
 	<scm>
 		<connection>scm:git://frontlinesms.git.sourceforge.net/gitroot/frontlinesms/thinlet.git</connection>
-		<developerConnection>scm:git:ssh://${sourceforge.username}@frontlinesms.git.sourceforge.net/gitroot/frontlinesms/thinlet</developerConnection>
+		<developerConnection>scm:git:ssh://alexandergeorge@frontlinesms.git.sourceforge.net/gitroot/frontlinesms/thinlet</developerConnection>
 	</scm>
 	
 	<repositories>
