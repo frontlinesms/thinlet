@@ -6656,7 +6656,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 		return set(component, key, value); // use defaultvalue
 	}
 
-	private String getString(Object component,
+	protected String getString(Object component,
 			String key, String defaultvalue) {
 		Object value = get(component, key);
 		return (value == null) ? defaultvalue :
@@ -6743,7 +6743,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 		return get(component, key, BOOLEAN) == Boolean.TRUE;
 	}
 
-	private int getInteger(Object component, String key, int defaultvalue) {
+	protected int getInteger(Object component, String key, int defaultvalue) {
 		Object value = get(component, key);
 		return (value == null) ? defaultvalue : ((Integer) value).intValue();
 	}
