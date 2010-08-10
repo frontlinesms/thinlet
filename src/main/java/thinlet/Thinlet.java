@@ -5590,14 +5590,29 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 				return true;
 			}
 		}
+		
+		boolean hadCancelButton = false;
 		// check subcomponents
 		if ((PANEL == classname) || (DESKTOP == classname) ||
 				(DIALOG == classname) || (SPLITPANE == classname) ||
 				(MENUBAR == classname) || (MENU == classname)) {
 			for (Object comp = get(component, ":comp"); comp != null; comp = get(comp, ":next")) {
 				if ((comp != checked) && checkMnemonic(comp, false, null, keycode, modifiers)) { return true; }
+				// FrontlineSMS added this. This is used to know if a type="cancel" button is defined in the current dialog 
+				hadCancelButton = (getClass(comp) == BUTTON && (modifiers == 0) && (keycode == KeyEvent.VK_ESCAPE) && (get(comp, "type") == "cancel"));
 			}
 		}
+		
+		if (DIALOG == classname) {
+			// If a type="cancel" button wasn't defined, we handle the escape key by calling the function 
+			// pointed by the "close" attribute of the dialog element 
+			if (!hadCancelButton && modifiers == 0 && keycode == KeyEvent.VK_ESCAPE) {
+				invoke(component, null, "close");
+				repaint(component);
+				return true;
+			}
+		} 
+		
 		// check parent
 		if (parent && ((DIALOG != classname) || !getBoolean(component, MODAL, false))) {
 			if (checkMnemonic(getParent(component), true,
