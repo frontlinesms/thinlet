@@ -14,7 +14,7 @@
 	</parent>
 
 	<scm>
-		<connection>scm:git://github.com/frontlinesms/frontlinesms-core.git</connection>
-		<developerConnection>scm:git:git@github.com:frontlinesms/frontlinesms-core.git</developerConnection>
+		<connection>scm:git://github.com/frontlinesms/thinlet.git</connection>
+		<developerConnection>scm:git:git@github.com:frontlinesms/thinlet.git</developerConnection>
 	</scm>
 </project>
