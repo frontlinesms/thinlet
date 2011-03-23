@@ -13,7 +13,8 @@
 		<relativePath>../pom-parent</relativePath>
 	</parent>
 
-	<properties>
-		<github.projectName>thinlet</github.projectName>
-	</properties>
+	<scm>
+		<connection>scm:git://github.com/frontlinesms/frontlinesms-core.git</connection>
+		<developerConnection>scm:git:git@github.com:frontlinesms/frontlinesms-core.git</developerConnection>
+	</scm>
 </project>
