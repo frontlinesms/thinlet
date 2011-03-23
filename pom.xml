@@ -12,4 +12,8 @@
 		<version>1.7.00-beta-5-SNAPSHOT</version>
 		<relativePath>../pom-parent</relativePath>
 	</parent>
+
+	<properties>
+		<github.projectName>thinlet</github.projectName>
+	</properties>
 </project>
