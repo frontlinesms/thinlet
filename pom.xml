@@ -3,7 +3,7 @@
 	<groupId>net.frontlinesms.core</groupId>
 	<artifactId>thinlet</artifactId>
 	<name>Thinlet</name>
-	<version>1.00.05</version>
+	<version>1.00.06-SNAPSHOT</version>
 	<description>Thinlet lightweight Java UI framework</description>
 	
 	<parent>
