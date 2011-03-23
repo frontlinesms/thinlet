@@ -3,13 +3,13 @@
 	<groupId>net.frontlinesms.core</groupId>
 	<artifactId>thinlet</artifactId>
 	<name>Thinlet</name>
-	<version>1.00.05</version>
+	<version>1.00.05-SNAPSHOT</version>
 	<description>Thinlet lightweight Java UI framework</description>
 	
 	<parent>
 		<groupId>net.frontlinesms.core</groupId>
 		<artifactId>frontlinesms-pom-parent</artifactId>
-		<version>1.7.00-beta-5</version>
+		<version>1.7.00-beta-5-SNAPSHOT</version>
 		<relativePath>../pom-parent</relativePath>
 	</parent>
 </project>
