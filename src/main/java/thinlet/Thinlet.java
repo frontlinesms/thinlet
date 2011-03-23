@@ -6529,13 +6529,13 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 	 * (int, long, double, float) or string given as 'text'.
 	 */
 	private Object[] getMethod(Object component, String value, Object root, Object handler) {
-		StringTokenizer st = new StringTokenizer(value, "(, \r\n\t)");
-		String methodname = st.nextToken();
+		StringTokenizer st = new StringTokenizer(value, "(,\r\n\t)");
+		String methodname = st.nextToken().trim();
 		int n = st.countTokens();
 		Object[] data = new Object[2 + 3 * n];
 		Class[] parametertypes = (n > 0) ? new Class[n] : null;
 		for (int i = 0; i < n; i++) {
-			String arg = st.nextToken();
+			String arg = st.nextToken().trim();
 			if ("thinlet".equals(arg)) {
 				data[2 + 3 * i] = "thinlet"; // the target component
 				parametertypes[i] = Thinlet.class;
