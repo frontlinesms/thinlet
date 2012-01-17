@@ -175,8 +175,6 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 			try {
 				getClass().getMethod("setFocusTraversalKeysEnabled", new Class[] { Boolean.TYPE }).
 						invoke(this, new Object[] { Boolean.FALSE });
-//				myWorker.requestJob(getClass().getMethod("setFocusTraversalKeysEnabled", new Class[] { Boolean.TYPE }),
-//						this, new Object[] { Boolean.FALSE });
 			} catch (Exception exc) { /* never */ }
 		}
 		// set listeners flags
@@ -4549,8 +4547,6 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 	protected boolean invoke(Object component, Object part, String event) {
 		Object method = get(component, event);
 		if (method != null) {
-			// Assign job to the worker
-//			myWorker.requestJob(method, part);
 			invokeImpl(method, part);
 			return true;
 		}
@@ -5494,7 +5490,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 	 * @param name parameter value identifies the widget
 	 * @return the first suitable component, or null
 	 */
-	public Object find(Object component, String name) {
+	public static Object find(Object component, String name) {
 		if(name.equals(get(component, NAME))) return component;
 		// otherwise search in its subcomponents
 		Object found = null;
