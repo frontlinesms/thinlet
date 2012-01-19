@@ -3726,7 +3726,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 	 * @param row the item/node/row to select
 	 * @param recursive true for tree
 	 */
-	private void selectItem(Object component, Object row, boolean recursive) {
+	protected void selectItem(Object component, Object row, boolean recursive) {
 		boolean changed = false;
 		for (Object item = get(component, ":comp");
 				item != null; item = getNextItem(component, item, recursive)) {
@@ -6860,7 +6860,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 				{ STRING, NAME, null, null },
 				{ BOOLEAN, ENABLED, PAINT, Boolean.TRUE },
 				{ BOOLEAN, "visible", "parent", Boolean.TRUE },
-				{ BOOLEAN, ThinletText.ATTRIBUTE_I18N, VALIDATE, Boolean.FALSE }, // for I18N
+				{ BOOLEAN, ATTRIBUTE_I18N, VALIDATE, Boolean.FALSE }, // for I18N
 				{ STRING, "tooltip", null, null },
 				{ FONT, FONT, VALIDATE, null },
 				{ COLOR, "foreground", PAINT, null },
@@ -6868,13 +6868,13 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 				{ INTEGER, ATTRIBUTE_WIDTH, VALIDATE, integer0 },
 				{ INTEGER, "height", VALIDATE, integer0 },
 				{ INTEGER, ATTRIBUTE_COLSPAN, VALIDATE, integer1 },
-				{ INTEGER, ThinletText.ATTRIBUTE_ROWSPAN, VALIDATE, integer1 },
+				{ INTEGER, ATTRIBUTE_ROWSPAN, VALIDATE, integer1 },
 				{ INTEGER, ATTRIBUTE_WEIGHT_X, VALIDATE, integer0 },
 				{ INTEGER, ATTRIBUTE_WEIGHT_Y, VALIDATE, integer0 },
 				{ CHOICE, ATTRIBUTE_HALIGN, VALIDATE,
-					new String[] { "fill", CENTER, LEFT, RIGHT } },
+						new String[] { "fill", CENTER, LEFT, RIGHT } },
 				{ CHOICE, ATTRIBUTE_VALIGN, VALIDATE,
-				new String[] { "fill", CENTER, TOP, BOTTOM } },
+						new String[] { "fill", CENTER, TOP, BOTTOM } },
 				// component class String null*
 				// parent Object null
 				// (bounds) Rectangle 0 0 0 0
