@@ -6505,7 +6505,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 	 * @param handler the target event handler object including the method
 	 * @throws java.lang.IllegalArgumentException
 	 */
-	protected void setMethod(Object component, String key, String value, Object root, Object handler) {
+	public void setMethod(Object component, String key, String value, Object root, Object handler) {
 		key = (String) getDefinition(getClass(component), key, METHOD)[1];
 		Object[] method = getMethod(component, value, root, handler);
 		set(component, key, method);
