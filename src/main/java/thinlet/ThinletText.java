@@ -66,7 +66,7 @@ public interface ThinletText {
 	public static final String BLOCK = "block";
 	public static final String SORT = "sort";
 	public static final String CELL = "cell";
-	public static final String SEPERATOR = "seperator";
+	public static final String SEPARATOR = "separator";
 	public static final String NONE = "none";
 	public static final String ASCENT = "ascent";
 	public static final String DESCENT = "descent";

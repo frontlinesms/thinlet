@@ -864,7 +864,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 		for (Object item = get(menu, ":comp"); item != null; item = get(item, ":next")) {
 			if (getBoolean(item, VISIBLE) != Boolean.TRUE) continue;
 			String itemclass = getClass(item);
-			Dimension d = (itemclass == "separator") ? new Dimension(1, 1) :
+			Dimension d = (itemclass == SEPARATOR) ? new Dimension(1, 1) :
 				getSize(item, 8 , 4);
 			if (itemclass == CHECKBOXMENUITEM) {
 				d.width = d.width + block + 3;
@@ -1345,7 +1345,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 				System.out.println("Thinlet.getPreferredSize() : EXIT");
 			return new Dimension(76 + 2 + block, 76 + 2 + block);
 		}
-		if ("separator" == classname) {
+		if (SEPARATOR == classname) {
 			if (METHOD_TRACE)
 				System.out.println("Thinlet.getPreferredSize() : EXIT");
 			return new Dimension(1, 1);
@@ -1967,7 +1967,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 				focus && (get(component, ":comp") == null), enabled,
 				g, clipx, clipy, clipwidth, clipheight);
 		}
-		else if ("separator" == classname) {
+		else if (SEPARATOR == classname) {
 			g.setColor(enabled ? c_border : c_disable);
 			g.fillRect(0, 0, bounds.width + evm, bounds.height + evm);
 		}
@@ -2004,7 +2004,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 				if (clipy + clipheight <= r.y) { break; }
 				if (clipy >= r.y + r.height) { continue; }
 				String itemclass = getClass(menu);
-				if (itemclass == "separator") {
+				if (itemclass == SEPARATOR) {
 					g.setColor(c_border);
 					g.fillRect(r.x, r.y, bounds.width - 2 + evm, r.height + evm);
 				} else {
@@ -3390,7 +3390,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 			for (Object item = (i == 0) ? get(part, ":next") :
 						get(popup ? get(component, MENU) : component, ":comp");
 					(i == 0) ? (item != null) : (item != part); item = get(item, ":next")) {
-				if ((getClass(item) != "separator") && getBoolean(item, ENABLED, true)) {
+				if ((getClass(item) != SEPARATOR) && getBoolean(item, ENABLED, true)) {
 					if (forward) { return item; }
 					previous = item;
 				}
@@ -6098,7 +6098,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 				((MENUBAR == parentclass) && (MENU == classname)) ||
 				(((MENU == parentclass) || (POPUPMENU == parentclass)) &&
 					((MENU == classname) || (MENUITEM == classname) ||
-					(CHECKBOXMENUITEM == classname) || ("separator" == classname))) ||
+					(CHECKBOXMENUITEM == classname) || (SEPARATOR == classname))) ||
 				(((PANEL == parentclass) || (DESKTOP == parentclass) ||
 					(SPLITPANE == parentclass) || (DIALOG == parentclass) ||
 					(WIDGET_TAB == parentclass)) && instance(classname, COMPONENT) &&
@@ -7010,7 +7010,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 			NODE, CHOICE, new Object[][] {
 				{ BOOLEAN, SELECTED, null, Boolean.FALSE },
 				{ BOOLEAN, EXPANDED, null, Boolean.TRUE } },
-			"separator", COMPONENT, null,
+			SEPARATOR, COMPONENT, null,
 			MENUBAR, COMPONENT, new Object[][] {
 				{ CHOICE, PLACEMENT, VALIDATE, new String[] { TOP, BOTTOM } } },
 			MENU, CHOICE, new Object[][] {
