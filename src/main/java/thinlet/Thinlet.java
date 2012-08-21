@@ -349,7 +349,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 				}
 				
 				Object comp = get(tab, ":comp"); // relative to the tab location
-				if ((comp != null) && getBoolean(comp, "visible", true)) {
+				if ((comp != null) && getBoolean(comp, VISIBLE, true)) {
 					setRectangle(comp, BOUNDS,
 						cx - r.x, stacked ? (r.height + 1) : (cy - r.y), cwidth, cheight);
 					doLayout(comp);
@@ -431,7 +431,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 				
 				Object comp = get(component, ":comp");
 				for (int i = 0; comp != null; comp = get(comp, ":next")) {
-					if (!getBoolean(comp, "visible", true)) { continue; }
+					if (!getBoolean(comp, VISIBLE, true)) { continue; }
 					int ix = areax + left + getSum(grid[0], 0, grid[4][i], gap, true);
 					int iy = areay + top + getSum(grid[1], 0, grid[5][i], gap, true);
 					int iwidth = getSum(grid[0], grid[4][i], grid[6][i], gap, false);
@@ -487,7 +487,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 			int maxdiv = Math.max(0, (horizontal ? bounds.width : bounds.height) - 5);
 
 			Object comp1 = get(component, ":comp");
-			boolean visible1 = (comp1 != null) && getBoolean(comp1, "visible", true);
+			boolean visible1 = (comp1 != null) && getBoolean(comp1, VISIBLE, true);
 			if (divider == -1) {
 				int d1 = 0;
 				if (visible1) {
@@ -508,7 +508,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 				doLayout(comp1);
 			}
 			Object comp2 = (comp1 != null) ? get(comp1, ":next") : null;
-			if ((comp2 != null) && getBoolean(comp2, "visible", true)) {
+			if ((comp2 != null) && getBoolean(comp2, VISIBLE, true)) {
 				setRectangle(comp2, BOUNDS, horizontal ? (divider + 5) : 0,
 					horizontal ? 0 : (divider + 5),
 					horizontal ? (bounds.width - 5 - divider) : bounds.width,
@@ -634,7 +634,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 				Rectangle r = getRectangle(tab, BOUNDS);
 				if (horizontal) { r.x += d; } else { r.y += d; }
 				Object comp = get(tab, ":comp"); // relative to the tab location
-				if ( (comp != null) && getBoolean(comp, "visible", true)) {
+				if ( (comp != null) && getBoolean(comp, VISIBLE, true)) {
 					Rectangle rc = getRectangle(comp, BOUNDS);
 					if (horizontal) { rc.x -= d; } else { rc.y -= d; }
 				}
@@ -1250,7 +1250,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 				else { tabsize = Math.max(tabsize, horizontal ? d.height + 5 : d.width + 9); }
 				
 				Object comp = get(tab, ":comp");
-				if ((comp != null) && getBoolean(comp, "visible", true)) {
+				if ((comp != null) && getBoolean(comp, VISIBLE, true)) {
 					Dimension dc = getPreferredSize(comp);
 					contentwidth = Math.max(contentwidth, dc.width);
 					contentheight = Math.max(contentheight, dc.height);
@@ -1324,10 +1324,10 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 		if (SPLITPANE == classname) {
 			boolean horizontal = ("vertical" != get(component, ORIENTATION));
 			Object comp1 = get(component, ":comp");
-			Dimension size = ((comp1 == null) || !getBoolean(comp1, "visible", true)) ?
+			Dimension size = ((comp1 == null) || !getBoolean(comp1, VISIBLE, true)) ?
 				new Dimension() : getPreferredSize(comp1);
 			Object comp2 = get(comp1, ":next");
-			if ((comp2 != null) && getBoolean(comp2, "visible", true)) {
+			if ((comp2 != null) && getBoolean(comp2, VISIBLE, true)) {
 				Dimension d = getPreferredSize(comp2);
 				size.width = horizontal ? (size.width + d.width) :
 					Math.max(size.width, d.width);
@@ -1390,7 +1390,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 		int count = 0; // count of the visible subcomponents
 		for (Object comp = get(component, ":comp"); comp != null;
 				comp = get(comp, ":next")) {
-			if (getBoolean(comp, "visible", true)) { count++; }
+			if (getBoolean(comp, VISIBLE, true)) { count++; }
 		}
 		if (count == 0) { return null; } // zero subcomponent
 		int columns = getInteger(component, ATTRIBUTE_COLUMNS, 0);
@@ -1408,7 +1408,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 		int nextsize = 0;
 		for (Object comp = get(component, ":comp");
 				comp != null; comp = get(comp, ":next")) {
-			if (!getBoolean(comp, "visible", true)) { continue; }
+			if (!getBoolean(comp, VISIBLE, true)) { continue; }
 			int colspan = ((columns != 0) && (columns < count)) ?
 				Math.min(getInteger(comp, ATTRIBUTE_COLSPAN, 1), columns) : 1;
 			int rowspan = (columns != 1) ? getInteger(comp, ThinletText.ATTRIBUTE_ROWSPAN, 1) : 1;
@@ -1649,7 +1649,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 			Object component, boolean enabled) {
 		if (METHOD_TRACE)
 			System.out.println("Thinlet.paint() : ENTRY");
-		if (!getBoolean(component, "visible", true)) { return; }
+		if (!getBoolean(component, VISIBLE, true)) { return; }
 		Rectangle bounds = getRectangle(component, BOUNDS);
 		if (bounds == null) { return; }
 		// negative component width indicates invalid component layout
@@ -1799,7 +1799,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 						horizontal ? (bounds.height - r.height + 1) : bounds.height,
 						g, true, true, true, true, enabled ? 'e' : MODE_DISABLED);
 					Object comp = get(selectedtab, ":comp");
-					if ((comp != null) && getBoolean(comp, "visible", true)) {
+					if ((comp != null) && getBoolean(comp, VISIBLE, true)) {
 						clipx -= r.x; clipy -= r.y; g.translate(r.x, r.y); // relative to tab
 						paint(g, clipx, clipy, clipwidth, clipheight, comp, enabled);
 						clipx += r.x; clipy += r.y; g.translate(-r.x, -r.y);
@@ -2996,7 +2996,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 							transferFocus();
 						} else {
 							try {
-								getClass().getMethod("transferFocusBackward"). invoke(this);
+								getClass().getMethod("transferFocusBackward").invoke(this);
 							} catch (Exception exc) { /* never */ }
 						}
 					}
@@ -4602,7 +4602,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 			mousex = x; mousey = y;
 		}
 		
-		if(!getBoolean(component, "visible", true)) return false;
+		if(!getBoolean(component, VISIBLE, true)) return false;
 		
 		Rectangle bounds = getRectangle(component, BOUNDS);
 		if((bounds == null) || !(bounds.contains(x, y))) return false;
@@ -5084,7 +5084,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 				(classname == TABBEDPANE) || (forced && (classname == SPLITPANE))) {
 			for (Object comp = component; comp != null;) {
 				// component and parents are enabled and visible
-				if (!getBoolean(comp, ENABLED, true) || !getBoolean(comp, "visible", true)) {
+				if (!getBoolean(comp, ENABLED, true) || !getBoolean(comp, VISIBLE, true)) {
 					return false;
 				}
 				Object parent = getParent(comp);
@@ -5447,10 +5447,18 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 		}
 		else {
 			removeItemImpl(parent, component);
-			// reuest focus for its parent if the component (or subcomponent) is currently focused
+			// request focus for its parent if the component (or subcomponent) is currently focused
 			for (Object comp = focusowner; comp != null; comp = getParent(comp)) {
+				// If the focus owner has been removed, clean stuff up
 				if (comp == component) {
-					setNextFocusable(parent, false); break;
+					setNextFocusable(parent, false);
+					comp = focusowner;
+					while((parent = getParent(comp)) != null) comp = parent;
+					if(comp != content) focusowner = null;
+					comp = mouseinside;
+					while((parent = getParent(comp)) != null) comp = parent;
+					if(comp != content) mouseinside = null;
+					break;
 				}
 			}
 		}
@@ -5524,7 +5532,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 	 */
 	private boolean checkMnemonic(Object component,
 			boolean parent, Object checked, int keycode, int modifiers) {
-		if ((component == null) || !getBoolean(component, "visible", true) ||
+		if ((component == null) || !getBoolean(component, VISIBLE, true) ||
 				!getBoolean(component, ENABLED, true)) { //+ enabled comp in disabled parent
 			return false;
 		}
@@ -6619,7 +6627,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 		boolean firstpaint = true;
 		int x = 0; int y = 0; int width = 0; int height = 0;
 		while (component != null) {
-			if (!getBoolean(component, "visible", true)) { break; }
+			if (!getBoolean(component, VISIBLE, true)) { break; }
 			if (PAINT == mode) {//|| (firstpaint && (component == content))
 				Rectangle bounds = getRectangle(component, BOUNDS);
 				if (bounds == null) { return; }
@@ -6859,7 +6867,7 @@ public class Thinlet extends Container implements Runnable, Serializable, Thinle
 			COMPONENT, null, new Object[][] {
 				{ STRING, NAME, null, null },
 				{ BOOLEAN, ENABLED, PAINT, Boolean.TRUE },
-				{ BOOLEAN, "visible", "parent", Boolean.TRUE },
+				{ BOOLEAN, VISIBLE, "parent", Boolean.TRUE },
 				{ BOOLEAN, ATTRIBUTE_I18N, VALIDATE, Boolean.FALSE }, // for I18N
 				{ STRING, "tooltip", null, null },
 				{ FONT, FONT, VALIDATE, null },
