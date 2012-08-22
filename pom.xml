@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>thinlet</artifactId>
 	<name>Thinlet</name>
-	<version>1.0.9</version>
+	<version>1.0.9-SNAPSHOT</version>
 	<description>Thinlet lightweight Java UI framework</description>
 	
 	<parent>
